@@ -1,0 +1,251 @@
+改动文件记录：
+	inc
+		function.php
+		
+	admin
+		dl_manage.php
+		dl.php
+		ad.php
+		ad.manage.php
+		ad_px.php
+		class2.php
+		left.php
+		zx.php
+		zx_manage.php
+		adclass.php
+		
+新增文件
+	admin
+		dlje.php
+		dltag.php
+		
+		
+	
+
+
+
+
+数据库修改：
+	zzcms_dl:
+	
+		ALTER TABLE  `zzcms_dl` CHANGE  `content`  `content` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT  '产品详细介绍';
+		
+		ALTER TABLE  `zzcms_dl` ADD  `photo` VARCHAR( 255 ) NULL COMMENT  '图片' AFTER  `cp`
+		
+		ALTER TABLE  `zzcms_dl` ADD  `xuhao` INT NULL DEFAULT  '0' COMMENT  '排序越小越靠前' AFTER  `ip`
+	
+	zzcms_ad:
+	
+		ALTER TABLE  `zzcms_ad` ADD  `dl_id` INT NULL COMMENT  '代理产品ID' AFTER  `link` ,ADD  `zx_id` INT NULL COMMENT  '资讯文章ID' AFTER  `dl_id`
+	
+	zzcms_adclass
+	
+		ALTER TABLE  `zzcms_adclass` ADD  `nav_show` TINYINT NULL DEFAULT  '0' COMMENT  '加入发现导航栏' AFTER  `xuhao`
+		
+		ALTER TABLE  `zzcms_adclass` ADD  `photo` VARCHAR( 100 ) NULL DEFAULT NULL COMMENT  '标签背景图片' AFTER  `nav_show`
+		
+		ALTER TABLE  `zzcms_adclass` ADD  `dl_classid` INT NULL DEFAULT  '0' COMMENT  '关联产品ID' AFTER  `photo`
+		
+		ALTER TABLE  `zzcms_adclass` ADD  `remarks` VARCHAR( 20 ) NULL DEFAULT NULL COMMENT  '备注' AFTER  `dl_classid`
+		
+		ALTER TABLE  `zzcms_adclass` ADD  `isedit` TINYINT NULL DEFAULT  '1' COMMENT  '0不能修改 1允许修改添加' AFTER  `remarks`
+		
+		ALTER TABLE  `zzcms_adclass` ADD  `isdel` TINYINT NULL DEFAULT  '1' COMMENT  '0不能删除 1允许删除' AFTER  `remarks`
+		
+	zzcms_pinglun
+	
+		ALTER TABLE  `zzcms_pinglun` ADD  `user_id` INT NULL DEFAULT  '0' COMMENT  '用户id' AFTER  `username`
+		
+		ALTER TABLE  `zzcms_pinglun` ADD  `up_device` TINYINT NULL DEFAULT  '0' COMMENT  '0 电脑 1 手机' AFTER  `user_id`
+		
+		ALTER TABLE  `zzcms_pinglun` ADD  `pid` INT NULL DEFAULT  '0' COMMENT  '父评论id' AFTER  `about`
+	
+	zzcms_usermessage:
+	
+		ALTER TABLE  `zzcms_usermessage` ADD  `uid` INT NULL DEFAULT 0 COMMENT  '用户ID' AFTER  `editor`
+		ALTER TABLE  `zzcms_usermessage` ADD  `username` VARCHAR( 50 ) NULL DEFAULT NULL COMMENT  '用户姓名' AFTER  `uid`
+		ALTER TABLE  `zzcms_usermessage` ADD  `phone` BIGINT NULL DEFAULT NULL COMMENT  '手机号' AFTER  `uid`
+	
+	zzcms_zx : 
+	
+		ALTER TABLE  `zzcms_zx` ADD  `did` INT NULL DEFAULT  '0' COMMENT  '关联代理产品id' AFTER  `smallclassname`
+	
+	zzcms_user:
+	
+		ALTER TABLE  `zzcms_user` ADD  `diyname` VARCHAR( 30 ) NULL COMMENT  '用户昵称' AFTER  `somane`
+	
+	zzcms_zsclass:
+	
+		ALTER TABLE  `zzcms_zsclass` ADD  `showindex` TINYINT NULL DEFAULT  '0' COMMENT  '首页导航显示' AFTER  `isshow`	
+	
+	
+	
+	添加新表
+	zzcms_dllist:
+		
+		CREATE TABLE IF NOT EXISTS `zzcms_dllist` (
+		  `id` int(11) NOT NULL,
+		  `did` int(11) NOT NULL COMMENT 'dl  ID',
+		  `name` varchar(100) NOT NULL COMMENT '项目名称',
+		  `title_list` varchar(100) NOT NULL COMMENT '主营项目',
+		  `reg_time` int(11) NOT NULL COMMENT '注册时间',
+		  `store_num` int(11) NOT NULL COMMENT '直营店数量',
+		  `join_num` int(11) NOT NULL COMMENT '加盟数量',
+		  `join_people` int(11) NOT NULL COMMENT '申请加盟人数',
+		  `price_min` int(11) NOT NULL COMMENT '最小投资金额',
+		  `price_max` int(11) NOT NULL COMMENT '最大投资金额',
+		  `price_total` int(11) NOT NULL COMMENT '投资总资金',
+		  `price_list` varchar(255) NOT NULL COMMENT '资金简介',
+		  `boss_name` varchar(50) NOT NULL COMMENT 'boss名称',
+		  `boss_addr` varchar(100) NOT NULL COMMENT 'boss地址',
+		  `boss_birthday` varchar(20) NOT NULL COMMENT 'boss生日',
+		  `boss_nature` varchar(50) NOT NULL COMMENT 'boss性格',
+		  `boss_job` varchar(100) NOT NULL COMMENT 'boss曾经做过的工作',
+		  `boss_interst` varchar(100) NOT NULL COMMENT 'boss兴趣',
+		  `update_time` int(11) NOT NULL COMMENT '更新时间',
+		  `status` tinyint(4) NOT NULL COMMENT '是否启用'
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='代理信息详细表';
+		
+		ALTER TABLE  `zzcms_dllist` ADD  `dl_tag` VARCHAR( 50 ) NULL COMMENT  '代理支持标签' AFTER  `price_max`
+		
+		ALTER TABLE  `zzcms_dllist` ADD  `dl_advantag` VARCHAR( 50 ) NULL COMMENT  '代理优势标签' AFTER  `dl_tag`
+	
+	zzcms_dlfootprint:
+	
+		CREATE TABLE IF NOT EXISTS `zzcms_dlfootprint` (
+		  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		  `did` int(11) NOT NULL COMMENT 'dl ID',
+		  `uid` int(11) NOT NULL COMMENT '用户id',
+		  `up_device` tinyint(4) NOT NULL DEFAULT '0' COMMENT '设备0电脑 1手机',
+		  `add_time` int(11) NOT NULL COMMENT '添加时间',
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户足迹' AUTO_INCREMENT=1 ;
+	
+	zzcms_zxcollect:
+	
+		CREATE TABLE IF NOT EXISTS `zzcms_zxcollect` (
+		  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		  `zid` int(11) NOT NULL COMMENT 'zx ID',
+		  `uid` int(11) NOT NULL COMMENT '用户id',
+		  `up_device` tinyint(4) NOT NULL DEFAULT '0' COMMENT '设备0电脑 1手机',
+		  `add_time` int(11) NOT NULL COMMENT '添加时间',
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='资讯收藏' AUTO_INCREMENT=1 ;
+	
+	zzcms_dlje:
+	
+		CREATE TABLE IF NOT EXISTS `zzcms_dlje` (
+		  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		  `price_min` int(11) DEFAULT NULL COMMENT '价格区间',
+		  `xuhao` int(11) DEFAULT '0' COMMENT '排序',
+		  `update_time` int(11) NOT NULL COMMENT '更新时间',
+		  `status` tinyint(4) DEFAULT '1' COMMENT '是否启用',
+		  `price_max` int(11) DEFAULT NULL,
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='投资金额区间表' AUTO_INCREMENT=1 ;
+	
+	zzcms_sms:
+	
+		CREATE TABLE IF NOT EXISTS `zzcms_sms` (
+		  `phone` bigint(20) NOT NULL,
+		  `code` int(11) NOT NULL,
+		  `add_time` int(11) NOT NULL
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+	
+	zzcms_dltag:
+	
+		CREATE TABLE IF NOT EXISTS `zzcms_dltag` (
+		  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		  `title` varchar(30) NOT NULL COMMENT '标签名',
+		  `xuhao` int(11) DEFAULT '0' COMMENT '排序',
+		  `list` varchar(30) DEFAULT NULL,
+		  `update_time` int(11) NOT NULL COMMENT '更新时间',
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='代理商标签' AUTO_INCREMENT=1 ;
+	
+	zzcms_dladvantag:
+	
+		CREATE TABLE IF NOT EXISTS `zzcms_dladvantag` (
+		  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		  `title` varchar(30) NOT NULL COMMENT '标签名',
+		  `xuhao` int(11) DEFAULT '0' COMMENT '排序',
+		  `list` varchar(30) DEFAULT NULL,
+		  `update_time` int(11) NOT NULL COMMENT '更新时间',
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='代理商优势标签' AUTO_INCREMENT=1 ;
+	
+	
+	
+	zzcms_footprint:
+	
+		CREATE TABLE IF NOT EXISTS `zzcms_footprint` (
+		  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		  `did` int(11) NOT NULL COMMENT 'dl ID',
+		  `uid` int(11) NOT NULL COMMENT '用户id',
+		  `up_device` tinyint(4) NOT NULL DEFAULT '0' COMMENT '设备0电脑 1手机',
+		  `add_time` int(11) NOT NULL COMMENT '添加时间',
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户足迹' AUTO_INCREMENT=1 ;
+	
+	
+	zzcms_usercollect:
+	
+		CREATE TABLE IF NOT EXISTS `zzcms_usercollect` (
+		  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		  `did` int(11) NOT NULL COMMENT 'dl ID',
+		  `uid` int(11) NOT NULL COMMENT '用户id',
+		  `up_device` tinyint(4) NOT NULL DEFAULT '0' COMMENT '设备0电脑 1手机',
+		  `add_time` int(11) NOT NULL COMMENT '添加时间',
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户收藏' AUTO_INCREMENT=1 ;
+		
+	zzcms_plzan:
+	
+		CREATE TABLE IF NOT EXISTS `zzcms_plzan` (
+		  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		  `pid` int(11) NOT NULL COMMENT '评论 ID',
+		  `uid` int(11) NOT NULL COMMENT '用户id',
+		  `up_device` tinyint(4) NOT NULL DEFAULT '0' COMMENT '设备0电脑 1手机',
+		  `add_time` int(11) NOT NULL COMMENT '添加时间',
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户评论点赞' AUTO_INCREMENT=1 ;
+	
+	zzcms_config:
+	
+		CREATE TABLE IF NOT EXISTS `zzcms_config` (
+		  `id` int(10) unsigned NOT NULL DEFAULT '0',
+		  `name` varchar(50) NOT NULL,
+		  `title` varchar(100) NOT NULL,
+		  `title_list` varchar(100) DEFAULT NULL COMMENT '副标题',
+		  `add_time` int(11) NOT NULL,
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统设置';
+	
+	zzcms_dlmessage:
+	
+		CREATE TABLE IF NOT EXISTS `zzcms_dlmessage` (
+		  `id` int(11) NOT NULL AUTO_INCREMENT,
+		  `phone` bigint(20) DEFAULT NULL COMMENT '手机号',
+		  `title` char(50) DEFAULT NULL,
+		  `content` varchar(255) DEFAULT NULL,
+		  `sendtime` int(11) DEFAULT NULL,
+		  `editor` char(50) DEFAULT NULL,
+		  `uid` int(11) DEFAULT '0' COMMENT '用户iD',
+		  `did` int(11) DEFAULT '0' COMMENT '代理商品iD',
+		  `username` varchar(50) DEFAULT NULL COMMENT '用户姓名',
+		  `sex` tinyint(4) DEFAULT '0' COMMENT '性别0女  1男',
+		  `aid` int(11) DEFAULT '0' COMMENT '管理员iD',
+		  `reply` varchar(255) DEFAULT NULL COMMENT '回复内容',
+		  `replytime` int(11) DEFAULT NULL COMMENT '回复时间',
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+	
+		ALTER TABLE  `zzcms_dlmessage` ADD  `state` INT NOT NULL DEFAULT  '0' COMMENT  '信息状态' AFTER  `replytime`
+		
+		ALTER TABLE  `zzcms_dlmessage` ADD  `up_device` TINYINT NULL DEFAULT  '0' COMMENT  '设备0电脑 1手机' AFTER  `sendtime`
+		
+		
+		
+		
+		
+	
