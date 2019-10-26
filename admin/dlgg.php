@@ -154,7 +154,7 @@ if ($action=="addgg") {
 
 <?php
 $did=isset($_GET['did'])?$_GET['did']:'';
-$sql="select * from zzcms_adclass where parentid='A' order by xuhao";
+$sql="select * from zzcms_adclass where parentid='A' and classid <> 35 and classid <> 36 and classid <> 48 order by xuhao";
 $rs=query($sql);
 $row=num_rows($rs);
 if (!$row){

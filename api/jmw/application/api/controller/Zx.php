@@ -60,7 +60,7 @@ class Zx extends Home{
 			$userInfo = userdecode(input('userInfo'));
 			$status = db('zxcollect')->where(['zid'=>input('id'),'uid'=>$userInfo['id']])->count();
 			$data['collect'] = $status;
-			$data['user'] = db('user')->where('id',$userInfo['id'])->field('username,somane,phone,sex')->find();
+			$data['user'] = db('user')->where('id',$userInfo['id'])->field('username,somane,mobile,sex')->find();
 		}
 		if( !empty($data['info']['did']) ){
 			$data['dl'] = model('dl')->one($data['info']['did']);

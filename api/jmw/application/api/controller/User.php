@@ -40,9 +40,10 @@ class User extends Home{
 		
 		
 		
-        $info = db('user')->where('id',$userInfo['id'])->field('somane,phone,username,sex,regdate')->find();
+        $info = db('user')->where('id',$userInfo['id'])->field('somane,mobile,username,sex,regdate')->find();
 		
 		if($info){
+            $info['phone'] = $info['mobile'];
 			return_ajax('成功',200,$info);
 		}else{
 			return_ajax('失败',400);
@@ -146,7 +147,8 @@ class User extends Home{
      */
     public function getuser(){
 		$userInfo = userdecode(input('userInfo'));
-		$data['user'] = db('user')->where('id',$userInfo['id'])->field('username,somane,phone,sex,regdate,img,diyname')->find();
+		$data['user'] = db('user')->where('id',$userInfo['id'])->field('username,somane,mobile,sex,regdate,img,diyname')->find();
+        $data['user']['phone'] = $data['user']['mobile']; 
 		$data['user']['regdate'] = date('Y-m-d',strtotime($data['user']['regdate']));
 		$data['user']['img'] = photo_userpath($data['user']['img']);
 		return_ajax('成功',200,$data);
@@ -192,7 +194,21 @@ class User extends Home{
 
     }
 
+	/**
+     * 获取图片上传地址
+     * author  Jason
+     * time    2019-10-25 
+     * @return array
+     */
 
+    public function getuploadurl(){
+        $info['uploadurl'] = uploadimgurl();
+		$info['url'] = config('PHOTOPATH');
+
+        return_ajax('成功',200,$info);
+       
+
+    }
 
 	
 

@@ -171,11 +171,13 @@ class Upload extends Base{
     **/
     public function alone(){
         if(empty($_FILES)){
-            $this->redirect('/');
-            exit;
+            //$this->redirect('/');
+            //exit;
+			return_ajax('请先登录',400);
         }
-        $return = array('status' => 1, 'info' => '上传成功', 'data' => '');
-        $cookie_id = cookie('seller_id');
+		
+        $return = array('status' => 1, 'info' => '上传成功', 'data' => []);
+        //$cookie_id = cookie('seller_id');
         if(!empty($cookie_id)){
             $info = model('common/Upload')->uploadData($cookie_id);
         }else{
@@ -187,6 +189,45 @@ class Upload extends Base{
             $return['status'] = 0;
             $return['info'] = $info;
         }
+		return_ajax('请先登录',200,$return);
         return json($return);
     }
+	
+	/**
+     * 单独图片上传
+    **/
+    public function userimg(){
+        if(empty($_FILES)){
+            //$this->redirect('/');
+            //exit;
+			return_ajax('没有上传文件',400);
+        }
+		//判断是否登录
+		$userInfo = userdecode(input('userInfo'));
+		if(empty($userInfo['id'])){
+			return_ajax('请先登录',400);
+        }
+		
+		
+        $return = array('data' => []);
+        $info = model('common/Upload')->uploadData1('0');
+        
+		//是否上传成功
+        if ($info) {
+            $return['data']['url'] = photo_userpath($info);
+			
+        } else {
+            $return['status'] = 0;
+            $return['info'] = $info;
+        }
+		$res = db('user')->where('id',$userInfo['id'])->update(['img'=>$info]);
+		if($res){
+			return_ajax('修改头像成功',200,$return);
+		}else{
+			return_ajax('修改头像失败',400);
+		}
+		
+        //return json($return);
+    }
+	
 }

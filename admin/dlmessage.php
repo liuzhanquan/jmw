@@ -84,8 +84,8 @@ if ($do=="modify"){
         按电话 </label> 
         <label> <input type="radio" name="kind" value="editor" <?php if ($kind=="editor") { echo "checked";}?>>
         按用户名</label>  
-       <label>  <input type="radio" name="kind" value="saver" <?php if ($kind=="saver") { echo "checked";}?>>
-        按接收人 </label> 
+       <!--label>  <input type="radio" name="kind" value="saver" <?php if ($kind=="saver") { echo "checked";}?>>
+        按接收人 </label--> 
         <input name="keyword" type="text" id="keyword2" value="<?php echo $keyword?>"> 
         <input type="submit" name="Submit" value="查找">
         <a href="?isread=no">未查看的</a> 
@@ -127,7 +127,13 @@ if ($keyword<>"") {
 	$sql2=$sql2. " and username like '%".$keyword."%' ";
 	break;
 	case "cpmc";
-	$sql2=$sql2. " and cp like '%".$keyword."%'";
+		$idarr = query_arr("select id from zzcms_dl where cp like '%$keyword%'");
+		$idstr = '';
+		foreach( $idarr as $item ){
+			$idstr = $idstr.','.$item['id'];
+		}
+		$idstr = substr($idstr,1);
+		$sql2=$sql2. " and did in (".$idstr.")";
 	break;
 	case "cpID";
 	$sql2=$sql2. " and did = '".$keyword."'";
@@ -176,7 +182,17 @@ echo "暂无信息";
       <td width="10%">留言</td>
       <td width="8%">电话</td>
       <td width="10%">申请时间</td>
-      <td width="10%" align="center">信息状态</td>
+      <td width="15%" align="center">
+		<p>信息状态</p>
+		<p>
+			<a href="?status=0">未联系</a>
+			<a href="?status=0">未联系</a>
+			<a href="?status=0">未联系</a>
+			<a href="?status=0">未联系</a>
+			<a href="?status=0">未联系</a>
+			<a href="?status=0">未联系</a>
+		</p>
+	  </td>
       <td width="5%" align="center">操作</td>
     </tr>
     <?php

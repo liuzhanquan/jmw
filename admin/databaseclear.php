@@ -35,9 +35,11 @@ if (!isset($_POST["action"])) {
 				<?php 
 			$rs = query("SHOW TABLES"); 
 while($row = fetch_array($rs)) { 
-	if ($row[0]=='zzcms_admin' || $row[0]=='zzcms_admingroup' || $row[0]== 'zzcms_adclass'){
+	if ($row[0]=='zzcms_admin' || $row[0]=='zzcms_admingroup' || $row[0]== 'zzcms_adclass' || $row[0]== 'zzcms_config'){
 		if( $row[0]== 'zzcms_adclass' ){
 			echo "<label><input name='table[]' type='checkbox'  value='".$row[0]."'>".$row[0].	"</label>(广告分类表，初始化后移动端广告将无法投放！)<br/>"; 
+		}elseif($row[0]== 'zzcms_config'){
+			echo "<label><input name='table[]' type='checkbox'  value='".$row[0]."'>".$row[0].	"</label>(移动端基础设置，初始化后基础设置将无法恢复！)<br/>"; 
 		}else{
 			echo "<label><input name='table[]' type='checkbox'  value='".$row[0]."'>".$row[0].	"</label>(用户/权限表，初始化后不能登录)<br/>"; 
 		}

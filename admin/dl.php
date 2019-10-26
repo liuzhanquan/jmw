@@ -139,8 +139,8 @@ WriteErrMsg($msg);
 	//获取刚刚添加的id
 	$id=insert_id();  
 	//添加代理详细信息 项目信息  boss信息
-	$effect = query("insert into zzcms_dllist(did,name,title_list,reg_time,price_min,price_max,dl_tag,dl_advantag,price_total,price_list,store_num,join_num,join_people,boss_name,boss_addr,boss_birthday,boss_nature,boss_job,boss_interst,boss_content,update_time) 		
-	values('$id','$name','$title_list','$reg_time','$price_min','$price_max','$dl_tag','$dl_advantag','$price_total','$price_list','$store_num','$join_num','$join_people','$boss_name','$boss_addr','$boss_birthday','$boss_nature','$boss_job','$boss_interst','$boss_content','".time()."')") ; 
+	$effect = query("insert into zzcms_dllist(did,name,title_list,reg_time,price_min,price_max,dl_tag,dl_advantag,price_total,price_list,store_num,join_num,join_people,boss_name,boss_img,boss_addr,boss_birthday,boss_nature,boss_job,boss_interst,boss_content,update_time) 		
+	values('$id','$name','$title_list','".strtotime($reg_time)."','$price_min','$price_max','$dl_tag','$dl_advantag','$price_total','$price_list','$store_num','$join_num','$join_people','$boss_name','$boss_img','$boss_addr','$boss_birthday','$boss_nature','$boss_job','$boss_interst','$boss_content','".time()."')") ; 
 
 	}elseif ($_POST["action"]=="modify"){
 	checkadminisdo("dl_modify");
@@ -148,10 +148,10 @@ WriteErrMsg($msg);
 	$dl_advantag = implode(',',$_POST['advantagArr']);
 	$oldprovince=trim($_POST["oldprovince"]);
 	if ($province=='请选择省份'){$province=$oldprovince;}
-	$isok=query("update zzcms_dl set classid='$classid',cp='$cp',title='$title',photo='$photo',province='$province',city='$city',content='$content',company='$dlsf',companyname='$companyname',
+	$isok=query("update zzcms_dl set classid='$classid',cp='$cp',title='$title',photo='$photo',province='$province',city='$city',content='$content',company='$dlsf',hit='$hit',companyname='$companyname',
 	dlsname='$truename',tel='$tel',address='$address',email='$email',sendtime='".date('Y-m-d H:i:s')."',passed='$passed' where id='$id'");
 	
-	$effect=query("update zzcms_dllist set name='$name',title_list='$title_list',reg_time='$reg_time',price_min='$price_min',price_max='$price_max',dl_tag='$dl_tag',dl_advantag='$dl_advantag',price_total='$price_total',price_list='$price_list',store_num='$store_num',join_num='$join_num',join_people='$join_people',boss_name='$boss_name',boss_addr='$boss_addr',boss_birthday='$boss_birthday',boss_nature='$boss_nature',boss_job='$boss_job',boss_interst='$boss_interst',boss_content='$boss_content',update_time='".time()."' where did='$id'");
+	$effect=query("update zzcms_dllist set name='$name',title_list='$title_list',reg_time='".strtotime($reg_time)."',price_min='$price_min',price_max='$price_max',dl_tag='$dl_tag',dl_advantag='$dl_advantag',price_total='$price_total',price_list='$price_list',store_num='$store_num',join_num='$join_num',join_people='$join_people',boss_name='$boss_name',boss_img='$boss_img',boss_addr='$boss_addr',boss_birthday='$boss_birthday',boss_nature='$boss_nature',boss_job='$boss_job',boss_interst='$boss_interst',boss_content='$boss_content',update_time='".time()."' where did='$id'");
 	}
 	if ($isok){echo "<script>location.href='dl_manage.php?page=".$page."'</script>";}		
 }
@@ -503,6 +503,17 @@ new PCAS('province', 'city', 'xiancheng', '<?php echo @$_SESSION['province']?>',
       <td align="right" class="border">boss名称</td>
       <td class="border"> <input name="boss_name" type="text" id="boss_name" size="45" maxlength="45">
 	  </td>
+    </tr>
+	<tr class="bossBox"> 
+		<td align="right" class="border">boss头像： </td>
+		<td class="border"> 
+			<input name="boss_img" type="hidden" id="boss_img" >
+			<table width="120" style="float:left;margin-right:10px;" height="120" border="0" cellpadding="5" cellspacing="1" bgcolor="#999999">
+			  <tr align="center" bgcolor="#FFFFFF"> 
+				<td id="boss_img4" onClick="openwindow('/uploadimg_form.php?noshuiyin=1',400,300,'boss_img','boss_img4')"> <input name="Submit2" type="button"  value="上传图片" /></td>
+			  </tr>
+			</table>
+		</td>
     </tr>
 	<tr  class="bossBox"> 
       <td align="right" class="border">籍贯</td>
@@ -1031,6 +1042,23 @@ new PCAS('province', 'city', 'xiancheng', '<?php echo $row['province']?>', '<?ph
       <td class="border"> <input name="boss_name" type="text" id="boss_name" size="45" value="<?php  echo $dllist['boss_name']?>" maxlength="45">
 	  </td>
     </tr>
+	<tr class="bossBox"> 
+      <td align="right" class="border">boss头像： </td>
+		<td class="border"> 
+			<input name="boss_img"  type="hidden" value="<?php echo $dllist['boss_img'];?>" id="boss_img" >
+			<table width="120" style="float:left;margin-right:10px;" height="120" border="0" cellpadding="5" cellspacing="1" bgcolor="#999999">
+			  <tr align="center" bgcolor="#FFFFFF"> 
+				<td id="boss_img3" onClick="openwindow('/uploadimg_form.php?noshuiyin=1',400,300,'boss_img','boss_img3')"> 
+					<?php if( empty($dllist['boss_img']) ){ 
+						echo '<input name="Submit2" type="button"  value="上传图片" />';
+					 }else{
+						echo '<img src='.$dllist['boss_img'].' width=120>';
+					} ?>
+				</td>
+			  </tr>
+			</table>
+		</td>
+    </tr>
 	<tr  class="bossBox"> 
       <td align="right" class="border">籍贯</td>
       <td class="border"> <input name="boss_addr" type="text" id="boss_addr" placeholder="例：北京" size="45" maxlength="45" value="<?php echo $dllist['boss_addr']?>" />      </td>
@@ -1117,6 +1145,10 @@ new PCAS('province', 'city', 'xiancheng', '<?php echo $row['province']?>', '<?ph
     <tr> 
       <td align="right" class="border">E-mail</td>
       <td class="border"><input name="email" type="text" id="email" value="<?php echo $row["email"]?>" size="45" maxlength="255" /></td>
+    </tr>
+	<tr> 
+      <td align="right" class="border">点击数</td>
+      <td class="border"><input name="hit" type="text" id="hit" value="<?php echo $row["hit"]?>" size="45" maxlength="255" /></td>
     </tr>
     <tr>
       <td align="right" class="border">审核</td>

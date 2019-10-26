@@ -95,6 +95,7 @@ checkid($id,1);
 $bigclassid = isset($_POST['bigclassid'])?$_POST['bigclassid']:0;
 $smallclassid = isset($_POST['smallclassid'])?$_POST['smallclassid']:0;
 $did = isset($_POST['did'])?$_POST['did']:0;
+$title_list = isset($_POST['title_list'])?$_POST['title_list']:0;
 $editor = isset($_POST['editor'])?$_POST['editor']:0;
 checkid($bigclassid,1);checkid($smallclassid,1);
 
@@ -177,16 +178,16 @@ checkadminisdo("zx_add");
 //}
 
 $isok=query("insert into zzcms_zx
-(bigclassid,bigclassname,smallclassid,smallclassname,title,link,laiyuan,keywords,description,content,img,groupid,jifen,elite,passed,did,editor,sendtime) 
+(bigclassid,bigclassname,smallclassid,smallclassname,title,title_list,link,laiyuan,keywords,description,content,img,groupid,jifen,elite,passed,did,editor,sendtime) 
 values
-('$bigclassid','$bigclassname','$smallclassid','$smallclassname','$title','$link','$laiyuan','$keywords','$description','$content','$img',
+('$bigclassid','$bigclassname','$smallclassid','$smallclassname','$title','$title_list','$link','$laiyuan','$keywords','$description','$content','$img',
 '$groupid','$jifen','$elite','$passed','$did','$editor','".date('Y-m-d H:i:s')."')");  
 $id=insert_id();
 		
 }elseif ($_REQUEST["action"]=="modify"){
 checkadminisdo("zx_modify");
 $isok=query("update zzcms_zx set bigclassid='$bigclassid',bigclassname='$bigclassname',smallclassid='$smallclassid',smallclassname='$smallclassname',
-title='$title',link='$link',laiyuan='$laiyuan',keywords='$keywords',description='$description',content='$content',
+title='$title',title_list='$title_list',link='$link',laiyuan='$laiyuan',keywords='$keywords',description='$description',content='$content',
 img='$img',groupid='$groupid',jifen='$jifen',did='$did',editor='$editor',sendtime='".date('Y-m-d H:i:s')."',elite='$elite',passed='$passed',hit='$hit' where id='$id'");	
 }
 setcookie("zxbigclassid",$bigclassid);
@@ -285,6 +286,12 @@ while($row = fetch_array($rs)){
         <label><input type="checkbox" name="checkbox" value="checkbox" onClick="showlink()">
         外链新闻</label> 
         <span id="quote"></span>		</td>
+    </tr>
+	<tr> 
+      <td align="right" class="border" >副标题 </td>
+      <td class="border" > 	
+        <input name="title_list" type="text" id="title_list" size="50" maxlength="255"> 
+        </td>
     </tr>
     <tr id="link" style="display:none"> 
       <td align="right" class="border" >链接地址</td>
@@ -447,6 +454,11 @@ while($row = fetch_array($rs)){
       <td align="right" class="border">标题</td>
       <td class="border"> 
         <input name="title" type="text" id="title2" value="<?php echo $rowzx["title"]?>" size="50" maxlength="255">      </td>
+    </tr>
+	<tr> 
+      <td align="right" class="border">副标题</td>
+      <td class="border"> 
+        <input name="title_list" type="text" id="title_list" value="<?php echo $rowzx["title_list"]?>" size="50" maxlength="255">      </td>
     </tr>
     <tr id="link" style="display:"> 
       <td align="right" class="border" >链接地址</td>

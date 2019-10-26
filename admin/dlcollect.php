@@ -80,8 +80,8 @@ if ($do=="modify"){
         按产品名称 </label> 
 		<label> <input type="radio" name="kind" value="cpID" <?php if ($kind=="cpID") { echo "checked";}?>>
         按产品ID </label> 
-        <label> <input name="kind" type="radio" value="tel" <?php if ($kind=="tel") { echo "checked";}?> >
-        按电话 </label> 
+        <!--label> <input name="kind" type="radio" value="tel" <?php if ($kind=="tel") { echo "checked";}?> >
+        按电话 </label--> 
         <label> <input type="radio" name="kind" value="editor" <?php if ($kind=="editor") { echo "checked";}?>>
         按用户名</label> 
         <input name="keyword" type="text" id="keyword2" value="<?php echo $keyword?>"> 
@@ -121,10 +121,23 @@ $sql2=$sql2." and saver<>'' and looked=0";
 if ($keyword<>"") {
 	switch ($kind){
 	case "editor";
-	$sql2=$sql2. " and username like '%".$keyword."%' ";
+		$idarr = query_arr("select id from zzcms_user where username like '%$keyword%'");
+		$idstr = '';
+		foreach( $idarr as $item ){
+			$idstr = $idstr.','.$item['id'];
+		}
+		$idstr = substr($idstr,1);
+		$sql2=$sql2. " and uid in (".$idstr.")";
+	
 	break;
 	case "cpmc";
-	$sql2=$sql2. " and cp like '%".$keyword."%'";
+		$idarr = query_arr("select id from zzcms_dl where cp like '%$keyword%'");
+		$idstr = '';
+		foreach( $idarr as $item ){
+			$idstr = $idstr.','.$item['id'];
+		}
+		$idstr = substr($idstr,1);
+		$sql2=$sql2. " and did in (".$idstr.")";
 	break;
 	case "cpID";
 	$sql2=$sql2. " and did = '".$keyword."'";

@@ -74,8 +74,11 @@ class Product extends Home{
 		$where = [];
 		$where['d.passed'] = 1;
 		//判断是否有搜索关键词
-		if( !empty(input('keyword')) ) $where['d.cp|d.title|dl.name|dl.title_list'] =array('like','%'.input('keyword').'%');
-		
+		if( !empty(input('keyword')) ){
+			$where['d.cp|d.title|dl.name|dl.title_list'] =array('like','%'.input('keyword').'%');
+			
+			$this->searchadd(input('keyword'));
+		}
 		
 		//判断是否选择价格区间
 		if(!empty(input('price'))){
@@ -94,12 +97,13 @@ class Product extends Home{
 		empty(input('limit')) ? $limit = 5 : $limit = input('limit');
 		
 		
+		
 		$list = model('dl')->alias('d')
 						->join('dllist dl','dl.did = d.id')
 						->where($where)
 						->limit((($page-1)*$limit),$limit)
 						->order('d.xuhao asc,d.sendtime desc')
-						->field('d.id,d.cp,d.title,d.classid,d.photo,dl.dl_advantag,dl.store_num,dl.join_num,dl.join_people,dl.price_min,dl.price_max')
+						->field('d.id,d.cp,d.title,d.hit,d.classid,d.photo,dl.dl_advantag,dl.store_num,dl.join_num,dl.join_people,dl.price_min,dl.price_max')
 						->select(); 
 		
 		$data['list'] = obj_arr($list);
@@ -190,8 +194,39 @@ class Product extends Home{
 		return_ajax('成功',200,$data);
 		
 	}
-
-
+	
+	/**
+     * 添加搜索关键词
+     * author  Jason        
+     * time    2019-10-25 
+     * @param  $keyword        搜索关键词
+     * @return array
+     */
+	public function searchadd($keyword){
+		$search = db('searchlog')->where('keyword',$keyword)->field('id,hit')->find();
+		//搜索关键词统计
+		if( !empty($search['id']) ){
+			$hit = $search['hit'] + 1;
+			db('searchlog')->where('id',$search['id'])->update(['hit'=>$hit]);
+		}else{
+			db('searchlog')->insert(['keyword'=>$keyword,'hit'=>1]);
+		}
+	}
+	/**
+     * 获取搜索关键词排行
+     * author  Jason        
+     * time    2019-10-25 
+     * @return array
+     */
+	public function getsearch(){
+		$search = db('searchlog')->field('keyword')->limit(12)->order('hit desc')->select();
+		//搜索关键词统计
+		$data = [];
+		foreach( $search as $item ){
+			$data[] = $item['keyword'];
+		}
+		return_ajax('成功',200,$data);
+	}
 
 	/**
      * 代理产品详细信息接口
@@ -216,16 +251,18 @@ class Product extends Home{
 						->join('dllist dl','dl.did = d.id')
 						->where($where)
 						->order('d.xuhao asc,d.sendtime desc')
-						->field('d.id,d.cp,d.title,d.province,d.city,d.xiancheng,d.classid,d.photo,d.content,d.address,d.hit,dl.dl_tag,dl.name,dl.title_list,dl.reg_time,dl.store_num,dl.join_num,join_people,dl.price_min,dl.price_max,dl.price_total,dl.price_list,boss_name,boss_addr,boss_birthday,boss_nature,boss_job,boss_interst,boss_content')
+						->field('d.id,d.cp,d.title,d.province,d.city,d.xiancheng,d.classid,d.photo,d.content,d.address,d.hit,dl.dl_tag,dl.name,dl.title_list,dl.reg_time,dl.store_num,dl.join_num,join_people,dl.price_min,dl.price_max,dl.price_total,dl.price_list,boss_name,dl.boss_img,boss_addr,boss_birthday,boss_nature,boss_job,boss_interst,boss_content')
 						->find();
-						
+		
 		$data['info']['photo'] 	= photo_str_arr($data['info']['photo']);
 		$data['info']['content'] 	= contentphotopath($data['info']['content']);
 		$data['info']['dl_tag'] 	= dl_tag_arr($data['info']['dl_tag']);
 		$data['info']['price_list'] = price_list_arr($data['info']['price_list']);
-		
+		if( !empty($data['info']['boss_img']) ){
+			$data['info']['boss_img'] 	= photo_str_arr($data['info']['boss_img']);
+		}
 		//添加关联文章
-		$zx = db('zx')->where('did',input('id'))->field('id,bigclassname,smallclassname,title,laiyuan,content,hit')->limit(3)->select();
+		$zx = db('zx')->where('did',input('id'))->field('id,bigclassname,smallclassname,title,title_list,laiyuan,content,hit')->limit(3)->select();
 		foreach( $zx as $key=>$item ){
 			$zx[$key]['content'] = contentphotoarr($item['content']);
 			$zx[$key]['pl_count'] = db('pinglun')->where('about',$item['id'])->count();
@@ -236,13 +273,17 @@ class Product extends Home{
 		$data['message'] = $this->dlmessage(input('id'));
 		
 		$data['user'] = [];
+		//判断用户是否登录， 登录获取用户信息
 		if( !empty(input('userInfo')) ){
 			$userInfo = userdecode(input('userInfo'));
+			//查看用户是否关联文章
 			$status = db('usercollect')->where(['did'=>input('id'),'uid'=>$userInfo['id']])->count();
 			$data['collect'] = $status;
-			$data['user'] = db('user')->where('id',$userInfo['id'])->field('username,somane,phone,sex')->find();
+			$data['user'] = db('user')->where('id',$userInfo['id'])->field('username,somane,mobile,sex')->find();
+			$data['user']['phone'] = $data['user']['mobile'];
 		}
 		
+		//添加足迹
 		if( !empty($data) ) $this->footPrintAdd(input('id'));
 		
 		
@@ -272,11 +313,14 @@ class Product extends Home{
      * @return array
      */
 	public function usersimulation(){
-		$res['img'] = imgsimulation();
-		$res['title'] = usersimulation();
+		$data = [];
+		for($i = 0;$i < 30; $i++){
+			$res['img'] = imgsimulation();
+			$res['title'] = usersimulation();
+			$data[] = $res;
+		}
 		
-		
-		return_ajax( '成功',200,$res );
+		return_ajax( '成功',200,$data );
 	}
 
 

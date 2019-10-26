@@ -1296,7 +1296,8 @@ if(!function_exists('authcode')){
 if(!function_exists('photo_str_arr')){
     /**
      * 图片字符串分隔数组
-     * @param $phone
+     * @param $photo   图片字符串
+     * @param $info    分隔符号 
      * @return array
      */
     function photo_str_arr($photo,$info = ','){
@@ -1311,7 +1312,7 @@ if(!function_exists('photo_str_arr')){
 if(!function_exists('photo_addpath')){
     /**
      * 图片路径添加网址
-     * @param $phone
+     * @param $photo
      * @return array
      */
     function photo_addpath($photo){
@@ -1327,7 +1328,7 @@ if(!function_exists('photo_addpath')){
 if(!function_exists('photo_userpath')){
     /**
      * 用户头像图片路径添加网址
-     * @param $phone
+     * @param $photo
      * @return array
      */
     function photo_userpath($photo){
@@ -1343,11 +1344,13 @@ if(!function_exists('photo_userpath')){
 if(!function_exists('contentphotopath')){
     /**
      * 文章内容图片路径添加网址
-     * @param $phone
+     * @param $content
      * @return array
      */
     function contentphotopath($content){
-		$content = preg_replace("/(src=\&quot\;)(.*?)(\&quot\;)/",'$1'.config('PHOTOPATH').'$2$3',$content);
+		$content = preg_replace("/(src=\&quot\;)(.*?)(\&quot\; )(style\=&quot\;)(.*?)(\&quot\;)/",'$1'.config('PHOTOPATH').'$2$3$4width:100%;$6',$content);
+		//$content = preg_replace("/(src=\&quot\;)(.*?)(\&quot\;)/",'$1'.config('PHOTOPATH').'$2$3',$content);
+		$content = htmlspecialchars_decode($content);
         return $content;
     }
 }
@@ -1355,7 +1358,7 @@ if(!function_exists('contentphotopath')){
 if(!function_exists('contentphotoarr')){
     /**
      * 文章内容图片路径前三张图片获取
-     * @param $phone
+     * @param $content
      * @return array
      */
     function contentphotoarr($content){
@@ -1376,7 +1379,7 @@ if(!function_exists('contentphotoarr')){
 if(!function_exists('price_list_arr')){
     /**
      * 费用详细列表转数组
-     * @param $phone
+     * @param $content
      * @return array
      */
     function price_list_arr($content){
@@ -1398,7 +1401,7 @@ if(!function_exists('price_list_arr')){
 if(!function_exists('dl_tag_arr')){
     /**
      * 代理标签id转数组，并匹配对应标签名称
-     * @param $phone
+     * @param $content
      * @return array
      */
     function dl_tag_arr($content){
@@ -1417,7 +1420,7 @@ if(!function_exists('dl_tag_arr')){
 if(!function_exists('dl_advantag_arr')){
     /**
      * 代理标签id转数组，并匹配对应标签名称
-     * @param $phone
+     * @param $content
      * @return array
      */
     function dl_advantag_arr($content){
@@ -1437,7 +1440,7 @@ if(!function_exists('dl_advantag_arr')){
 if(!function_exists('dl_price_arr')){
     /**
      * 代理标签id转数组，并匹配对应标签名称
-     * @param $phone
+     * @param $price_id
      * @return array
      */
     function dl_price_arr($price_id){
@@ -1509,7 +1512,22 @@ if(!function_exists('imgsimulation')){
 }
 
 
-
+if(!function_exists('uploadimgurl')){
+	/*
+	 *图片上传路径添加
+	 *@param 
+	 *@return array
+	 */
+	function uploadimgurl(){
+		
+		$str = config('PHOTOPATH').'/uploadimgajax.php';
+		
+		return $str;
+		
+	}
+	
+	
+}
 
 
 

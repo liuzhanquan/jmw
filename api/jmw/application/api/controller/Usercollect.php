@@ -64,17 +64,8 @@ class Usercollect extends Home{
 		
 		
 		
-        $info = db('user')->where('id',$userInfo['id'])->field('somane,phone,username,sex,regdate')->find();
-		dump($info);exit();
-
-        //判断时间是否大于60秒
-        if( (time() - (int)$info['add_time']) > 60 ){
-            return_ajax('验证码已过期，请获取新的验证码',400);
-        }
-
-        if( md5($info['code']) !== md5($code) ){
-            return_ajax('验证码错误',400);
-        }
+        $info = db('user')->where('id',$userInfo['id'])->field('somane,mobile,username,sex,regdate')->find();
+		
        
 
     }
@@ -96,13 +87,13 @@ class Usercollect extends Home{
 		//if( empty(input('code')) ) 		return_ajax('验证码',400);
 		
 		$data['username'] 	= input('username');
-		$data['phone'] 		= input('phone');
+		//$data['mobile'] 	= input('phone');
 		$data['somane'] 	= input('somane');
 		$data['sex'] 		= input('sex');
 		$data['regdate']	= date("Y-m-d H:i:s",time()); 
 		if( !empty(input('code')) ){
 			$this->checkPhoneCms(input('phone'),input('code'));
-			$data['phone'] = input('phone');
+			//$data['mobile'] = input('phone');
 		}
 		$nameCount = db('user')->where(['username'=>$data['username']])->count();
 		

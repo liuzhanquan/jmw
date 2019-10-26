@@ -50,34 +50,6 @@ class Footprint extends Home{
     }
 	
 	
-
-    /**
-     * 我的足迹添加
-     * author  Jason
-     * time    2019-10-17 
-     * @cookie  userInfo    
-     * @return array
-     */
-    public function add(){
-		
-		$userInfo = userdecode(input('userInfo'));
-		
-		
-		
-        $info = db('user')->where('id',$userInfo['id'])->field('somane,phone,username,sex,regdate')->find();
-		dump($info);exit();
-
-        //判断时间是否大于60秒
-        if( (time() - (int)$info['add_time']) > 60 ){
-            return_ajax('验证码已过期，请获取新的验证码',400);
-        }
-
-        if( md5($info['code']) !== md5($code) ){
-            return_ajax('验证码错误',400);
-        }
-       
-
-    }
 	
 	/**
      * 我的足迹清空
@@ -123,7 +95,7 @@ class Footprint extends Home{
 		//if( empty(input('code')) ) 		return_ajax('验证码',400);
 		
 		$data['username'] 	= input('username');
-		$data['phone'] 		= input('phone');
+		//$data['mobile'] 	= input('phone');
 		$data['somane'] 	= input('somane');
 		$data['sex'] 		= input('sex');
 		$data['regdate']	= date("Y-m-d H:i:s",time()); 

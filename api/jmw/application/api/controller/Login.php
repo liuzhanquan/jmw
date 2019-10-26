@@ -17,7 +17,7 @@ class Login extends Base{
         $info = db('user')->where('username',$username)->find();
 		//用户名搜索为空的时候
 		if( empty($info) ){
-			$info = db('user')->where('phone',$username)->find();
+			$info = db('user')->where('mobile',$username)->find();
 		}
         if( empty($info) ){
 			return_ajax('账号不存在，请先注册',400);
@@ -70,7 +70,7 @@ class Login extends Base{
 			$data['conpany'] = input('conpany');
 		}
 		
-		$info = db('user')->where('phone',input('phone'))->column('id');
+		$info = db('user')->where('mobile',input('phone'))->column('id');
 		if( $info )	return_ajax('该手机号已被绑定，无法重复使用',400);
 		
 		$info = db('user')->where('username',input('username'))->column('id');
@@ -79,11 +79,12 @@ class Login extends Base{
 		if( input('passdefine') != input('password') ) return_ajax('两次密码不一致',400);
 		
 		$data['username'] 	= input('username');
-		$data['phone']		= input('phone');
+		$data['mobile']		= input('phone');
 		$data['password']   = md5(input('password'));
 		$data['passwordtrue']= input('password');
 		$data['email']		= input('email');
 		$data['somane']		= input('somane');
+		$data['img']		= '/image/userheader/'.mt_rand(100,120).'.png';
 		$data['logins']		= 0;
 		$data['lockuser']	= 0;
 		$data['groupid']	= 0;

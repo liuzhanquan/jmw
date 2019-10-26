@@ -11,7 +11,8 @@ header('Access-Control-Allow-Headers:*');
 define('APP_DIR',dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
 // 定义应用目录
 define('APP_PATH', APP_DIR . 'application/');
-
+//定义用户头像上传目录
+define('USER_UPLOAD_IMG',dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR);
 
 // 加载框架引导文件
 require APP_DIR . 'framework/start.php';

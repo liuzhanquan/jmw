@@ -92,6 +92,7 @@ function disp(n){
 		<li><a href="dlmessage.php" target="frmright">加盟申请</a></li> 
 		<li><a href="footprint.php" target="frmright">用户足迹</a></li> 
 		<li><a href="dlcollect.php" target="frmright">用户产品收藏</a></li> 
+		<li><a href="searchlog.php" target="frmright">搜索关键词记录</a></li> 
 		<li><a href="licence.php" target="frmright">资质证书</a></li> 
 		<li><a href="linkmanage.php" target="frmright">友情链接</a></li> 
 		<li><a href="help_manage.php?b=2" target="frmright">公告信息</a></li>
@@ -195,6 +196,7 @@ function disp(n){
 			<div id="left7" style="display:none"> 
 			<li><a href="siteconfig.php#siteskin" target="frmright">风格</a></li>
 			<li><a href="siteconfig.php#SiteInfo" target="frmright">基本信息</a></li>
+			<li><a href="config.php?do=modify" target="frmright">移动端基本信息</a></li>
 			<li><a href="siteconfig.php#SiteOpen" target="frmright">运行状态</a></li>
 			<li><a href="siteconfig.php#SiteOption" target="frmright">功能参数</a></li>
             <li><a href="about_manage.php" target="frmright">底部链接</a></li> 

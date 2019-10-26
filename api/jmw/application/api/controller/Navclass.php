@@ -68,7 +68,7 @@ class Navclass extends Home{
      */
 	public function recommend(){
 		//默认查询数量
-		$limit = 5;
+		$limit = 10;
 		//默认查找分页
 		$page = 1;
 		//默认查找数据 0 产品与文章  1 产品  2 文章
@@ -130,92 +130,8 @@ class Navclass extends Home{
 	
 	
 
-    /**
-     * 发送短信接口
-     * author  Jason        
-     * time    2019-09-30 
-     * @param  phone      手机号
-     * @return array
-     */
-    public function usersms(){
-
-        if( !phoneNum(input('phone')) ) return_ajax('手机号格式不正确',400);
-
-        $code = mt_rand(100000,999999);
-
-        $data['phone'] = input('phone');
-        $data['code']  = $code;
-        $data['add_time'] = time();
-        $info = db('sms')->where('phone',input('phone'))->column('add_time');
-        
-
-        if( empty($info[0]) ){
-            $res = db('sms')->insert($data);
-        }else{
-			//判断时间是否大于60秒
-			if( (time() - (int)$info[0]) < 60 ){
-				return_ajax('一分钟内只能发送一次哦',400);
-			}
-            $res = db('sms')->where('phone',input('phone'))->update($data);
-        }
-        if( $res ){
-            return_ajax('短信发送成功',200);
-        }else{
-            return_ajax('短信发送失败',400);
-        }
-
-    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * 查看短信验证码 测试用
-     * author  Jason
-     * time    2019-09-30 
-     * @param  phone      手机号
-     * @return array
-     */
-    public function PhoneCmsFind(){
-        $phone = input('phone');
-        $info = db('sms')->where('phone',$phone)->find();
-
-
-        //判断时间是否大于60秒
-        // if( (time() - (int)$info['add_time']) > 60 ){
-        //     return_ajax('请获取新的验证码',400);
-        // }
-
-        return_ajax('验证码：'.$info['code'],400);
-       
-
-    }
-
-    /**
-     * 查看激活卡  测试用
-     * author  Jason
-     * time    2019-09-30 
-     * @return array
-     */
-
-    public function getCard(){
-        $info = db('agent_card')->select();
-
-
-        return_ajax($info,400);
-       
-
-    }
 
 
 

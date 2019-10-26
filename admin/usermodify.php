@@ -238,7 +238,7 @@ while($rown = fetch_array($rsn)){
 			  <script type="text/javascript">CKEDITOR.replace('gsjj');</script>      </td>
     </tr>
     <tr> 
-      <td align="right" class="border">公司形象图片
+      <td align="right" class="border">公司形象图片 / 用户头像
         <input name="img" id="img" type="hidden" value="<?php echo $row["img"]?>">
         <input name="oldimg" type="hidden" id="oldimg" value="<?php echo $row["img"]?>">      </td>
       <td class="border">

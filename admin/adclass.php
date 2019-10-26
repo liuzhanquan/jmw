@@ -365,7 +365,7 @@ WriteErrMsg($ErrMsg);
 	    $rsb=query($sqlb);
 		?>
 		<select name="dl_classid" id="dl_classid">
-                <option value="" selected="selected">请选择代理产品类</option>
+                <option value="0" selected="selected">请选择代理产品类</option>
                 <?php while($rowb= fetch_array($rsb)){?>
                 <option value="<?php echo $rowb["classid"]?>"><?php echo $rowb["classname"]?></option>
                 <?php
@@ -523,14 +523,14 @@ $nav_show=trim($_POST["nav_show"]);
 	}
 	if ($FoundErr==0) {
 			query("update zzcms_adclass set parentid='$bigclassid',classname='$classname',nav_show='$nav_show',remarks='$remarks',dl_classid='$dl_classid',photo='$photo' where  classid='" .$classid."'");
-			
 			if ($bigclassid<>$oldbigclassid) {//小类别改变所属大类情况下
 				query("Update zzcms_ad set bigclassname='".$bigclassid ."',nav_show='".$nav_show."' where bigclassname='" .$oldbigclassid ."' and smallclassname='" . $classname ."'");
 			}
 			if ($classname<>$oldclassname) {//小类名改变的情况下
 				query("update zzcms_ad set smallclassname='".$classname ."',nav_show='".$nav_show."' where bigclassname='".$bigclassid ."' and smallclassname='".$oldclassname . "'");
 			}
-			echo "<script>location.href='?#S".$classid."'</script>";
+			
+			//echo "<script>location.href='?#S".$classid."'</script>";
 	}
 }
 if ($FoundErr==1){
@@ -574,7 +574,7 @@ $row=fetch_array($rs);
 	    $rsb=query($sqlb);
 		?>
 		<select name="dl_classid" id="dl_classid">
-                <option value="" selected="selected">请选择代理产品类</option>
+                <option value="0" selected="selected">请选择代理产品类</option>
                 <?php while($rowb= fetch_array($rsb)){?>
                 <option value="<?php echo $rowb["classid"]?>" <?php if( $row["dl_classid"] == $rowb['classid'] ) echo 'selected';?> ><?php echo $rowb["classname"]?></option>
                 <?php

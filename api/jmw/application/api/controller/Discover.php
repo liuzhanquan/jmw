@@ -105,9 +105,10 @@ class Discover extends Home{
 			$data['list'] = model('zx')->zxrecommend($page,$limit);
 		}else{
 			if( $info['parentid'] == 'A' ){
-				$data = db('adclass')->where(['parentid'=>$info['classname'],'nav_show'=>1])->field('classid,classname,photo,remarks')->order('xuhao asc,classid desc')->select();
-				foreach( $data as $key=>$item ){
-					$data[$key]['count'] = db('ad')->where(['smallclassname'=>$item['classname'],'bigclassname'=>$info['classname']])->count();
+				$data['list'] = db('adclass')->where(['parentid'=>$info['classname'],'nav_show'=>1])->limit((($page-1)*$limit),$limit)->field('classid,classname,photo,remarks')->order('xuhao asc,classid desc')->select();
+				foreach( $data['list'] as $key=>$item ){
+					$data['list'][$key]['count'] = db('ad')->where(['smallclassname'=>$item['classname'],'bigclassname'=>$info['classname']])->count();
+					$data['list'][$key]['photo'] = photo_userpath($item['photo']);
 				}
 			}else{
 				

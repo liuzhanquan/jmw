@@ -175,8 +175,9 @@ class Adclass extends Base{
 		$list = db('dl')->alias('d')
 						->join('dllist dl','dl.did = d.id')
 						->where('d.id','in',$idArr)
-						->field('d.cp,d.id,d.photo,d.hit,dl.dl_advantag,dl.price_min,dl.price_max,dl.store_num,dl.join_num,dl.join_people')
+						->field('d.cp,d.title,d.id,d.photo,d.hit,dl.dl_advantag,dl.price_min,dl.price_max,dl.store_num,dl.join_num,dl.join_people')
 						->limit((($page-1)*$limit),$limit)
+						->order('d.hit desc')
 						->select();
 						
 		foreach( $list as $key=>$item ){

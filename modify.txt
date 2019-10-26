@@ -69,7 +69,9 @@
 	zzcms_zx : 
 	
 		ALTER TABLE  `zzcms_zx` ADD  `did` INT NULL DEFAULT  '0' COMMENT  '关联代理产品id' AFTER  `smallclassname`
-	
+		
+		ALTER TABLE  `zzcms_zx` ADD  `title_list` VARCHAR( 200 ) NULL COMMENT  '副标题' AFTER  `title`
+		
 	zzcms_user:
 	
 		ALTER TABLE  `zzcms_user` ADD  `diyname` VARCHAR( 30 ) NULL COMMENT  '用户昵称' AFTER  `somane`
@@ -109,7 +111,9 @@
 		ALTER TABLE  `zzcms_dllist` ADD  `dl_tag` VARCHAR( 50 ) NULL COMMENT  '代理支持标签' AFTER  `price_max`
 		
 		ALTER TABLE  `zzcms_dllist` ADD  `dl_advantag` VARCHAR( 50 ) NULL COMMENT  '代理优势标签' AFTER  `dl_tag`
-	
+		
+		ALTER TABLE  `zzcms_dllist` ADD  `boss_img` VARCHAR( 100 ) NULL COMMENT  'boss头像' AFTER  `boss_name`
+		
 	zzcms_dlfootprint:
 	
 		CREATE TABLE IF NOT EXISTS `zzcms_dlfootprint` (
@@ -213,14 +217,27 @@
 	zzcms_config:
 	
 		CREATE TABLE IF NOT EXISTS `zzcms_config` (
-		  `id` int(10) unsigned NOT NULL DEFAULT '0',
+		  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
 		  `name` varchar(50) NOT NULL,
 		  `title` varchar(100) NOT NULL,
-		  `title_list` varchar(100) DEFAULT NULL COMMENT '副标题',
+		  `logo` varchar(50) DEFAULT NULL COMMENT 'logo',
+		  `phone1` varchar(25) DEFAULT NULL COMMENT '手机1',
+		  `phone1_title` varchar(50) DEFAULT NULL COMMENT '手机1标题',
+		  `phone2` varchar(50) DEFAULT NULL COMMENT '手机2',
+		  `phone_title` varchar(50) DEFAULT NULL COMMENT '手机2标题',
+		  `version_num` varchar(50) DEFAULT NULL COMMENT '版本号',
+		  `agreement` text COMMENT '服务协议',
+		  `privacy` text COMMENT '隐私政策',
+		  `rightcopy` varchar(100) DEFAULT NULL COMMENT '版权',
 		  `add_time` int(11) NOT NULL,
 		  PRIMARY KEY (`id`)
-		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统设置';
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='系统设置' AUTO_INCREMENT=7 ;
 	
+		INSERT INTO `zzcms_config` (`id`, `name`, `title`, `logo`, `phone1`, `phone1_title`, `phone2`, `phone_title`, `version_num`, `agreement`, `privacy`, `rightcopy`, `add_time`) VALUES
+		(1, '', '', '/uploadfiles/2019-10/20191023041909836.jpg', '400-0000-0003', '加盟管家', '010-123456', '广告投放', '3.5.9', '给点炒鸡好的服务', '来点隐私保护', 'xxx信息有限公司 版权所有', 0);
+		
+		ALTER TABLE  `zzcms_config` CHANGE  `phone_title`  `phone2_title` VARCHAR( 50 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT  '手机2标题'
+		
 	zzcms_dlmessage:
 	
 		CREATE TABLE IF NOT EXISTS `zzcms_dlmessage` (
@@ -244,8 +261,13 @@
 		
 		ALTER TABLE  `zzcms_dlmessage` ADD  `up_device` TINYINT NULL DEFAULT  '0' COMMENT  '设备0电脑 1手机' AFTER  `sendtime`
 		
-		
-		
-		
+	zzcms_searchlog:
+	
+		CREATE TABLE IF NOT EXISTS `zzcms_searchlog` (
+		  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		  `keys` varchar(100) DEFAULT NULL COMMENT '关键词',
+		  `hit` int(10) DEFAULT '0' COMMENT '搜索次数',
+		  PRIMARY KEY (`id`)
+		) ENGINE=MYISAM DEFAULT CHARSET=utf8 COMMENT='搜索关键词统计';
 		
 	

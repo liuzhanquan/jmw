@@ -32,7 +32,7 @@ class Zx extends Base{
 	public function selectzx($page,$limit){
 		$where['passed'] = 1;
 		$res = db('zx')
-					->where($where)->field('id,bigclassid,bigclassname,smallclassid,smallclassname,title,img,laiyuan,laiyuan,hit,sendtime,content')->order('elite desc,sendtime desc')->limit(($page-1)*$limit,$limit)->select();
+					->where($where)->field('id,bigclassid,bigclassname,smallclassid,smallclassname,title,title_list,img,laiyuan,laiyuan,hit,sendtime,content')->order('elite desc,sendtime desc')->limit(($page-1)*$limit,$limit)->select();
 		return $res;
 	}
 

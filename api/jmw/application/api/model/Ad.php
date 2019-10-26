@@ -30,8 +30,9 @@ class Ad extends Base{
 	}
     
 	//$type  查询的类型  默认全部  1 代理产品 2 资讯
-	public function advert($classid,$type = 0,$limit='',$page=1){
+	public function advert($classid,$type = 0,$limit=5,$page=1){
 		$classArr = db('adclass')->where('classid',$classid)->field('classid,classname,parentid')->find();
+		
 		$ad = db('ad')->where(['smallclassname'=>$classArr['classname'],'bigclassname'=>$classArr['parentid']])->order('xuhao asc')->field('dl_id,zx_id')->limit((($page-1)*$limit),$limit)->select();
 		
 		if( !empty($ad) ){
@@ -94,7 +95,7 @@ class Ad extends Base{
 			}
 		
 		$zx = $this->selectzx1($page,1);
-		if( !empty($zx) ){
+		if( !empty($zx) && !empty($res) ){
 			$res[] = $zx;
 		}
 		
