@@ -114,6 +114,7 @@ $ml='../uploadfiles/'.$mlname;
 		}else{
 		$d=1;
 		}
+		
 		$rs=query("select img from zzcms_zx where img='".$file."' or img='".str_replace("_small.",".",$file)."'");
     	$row=num_rows($rs);
 	    if (!$row){
@@ -178,6 +179,38 @@ $ml='../uploadfiles/'.$mlname;
 		$m1=1;
 		}
 		
+		$rs=query("select content,photo from zzcms_dl where photo like '%".$file."%' or photo like'%".str_replace("_small.",".",$file)."%' or  content like '%".$file."%' or content like'%".str_replace("_small.",".",$file)."%'");
+    	$row=num_rows($rs);
+	    if (!$row){
+		$o=0;//zzcms_dl表中没有用到这个图片
+		}else{
+		$o=1;
+		}
+		
+		$rs=query("select boss_img from zzcms_dllist where boss_img like '%".$file."%' or boss_img like'%".str_replace("_small.",".",$file)."%'");
+    	$row=num_rows($rs);
+	    if (!$row){
+		$p=0;//zzcms_dllist表中没有用到这个图片
+		}else{
+		$p=1;
+		}
+		
+		$rs=query("select photo from zzcms_adclass where photo like '%".$file."%' or photo like'%".str_replace("_small.",".",$file)."%' ");
+    	$row=num_rows($rs);
+	    if (!$row){
+		$q=0;//zzcms_adclass表中没有用到这个图片
+		}else{
+		$q=1;
+		}
+		
+		$rs=query("select logo from zzcms_config where logo like '%".$file."%' or logo like'%".str_replace("_small.",".",$file)."%' ");
+    	$row=num_rows($rs);
+	    if (!$row){
+		$r=0;//zzcms_adclass表中没有用到这个图片
+		}else{
+		$r=1;
+		}
+		
 		if ($file!=logourl){
 		$i=0;//不是上传的LOGO图片
 		}else{
@@ -190,7 +223,7 @@ $ml='../uploadfiles/'.$mlname;
 		$j=1;
 		}
 		
-		if ($a+$a1+$a2+$b+$c+$c1+$c2+$d+$e+$e1+$f+$f1+$g+$h+$i+$j+$m==0) {//如果在这几个表中都没有用到这个图片
+		if ($a+$a1+$a2+$b+$c+$c1+$c2+$d+$e+$e1+$f+$f1+$g+$h+$i+$j+$m+$o+$p+$q+$r==0) {//如果在这几个表中都没有用到这个图片
 		echo "<li style='color:red'>第".$n."个文件 " . $file ." 无用 处理结果：</li>"	;
 		$ok=unlink("../".substr($file,1));//前面是../直接用/完法删除
 			if ($ok){echo'成功删除';}else{echo'删除失败';}

@@ -380,7 +380,7 @@ WriteErrMsg($ErrMsg);
       <td class="border">
 		<div id="add">
 		   <input name="remarks" type="text" size="50" maxlength="50" style="margin:4px 0">  
-		   <span style="color:#999;">（显示用户观看需要，无需要可不填写）</span>
+		   <span style="color:#999;">（加盟排行榜、热门行业二级分类角标文字，无需要可不填写）</span>
 			
 		</div> 
 		</td>
@@ -589,7 +589,7 @@ $row=fetch_array($rs);
       <td class="border">
 		<div id="add">
 		   <input name="remarks" type="text" size="50" maxlength="50" value="<?php echo $row["remarks"];?>" style="margin:4px 0">  
-		   <span style="color:#999;">（显示用户观看需要，无需要可不填写）</span>
+		   <span style="color:#999;">（加盟排行榜、热门行业二级分类角标文字，无需要可不填写）</span>
 			
 		</div> 
 		</td>

@@ -133,6 +133,7 @@ WriteErrMsg($msg);
 	$dl_tag = implode(',',$_POST['dltagArr']);
 	$dl_advantag = implode(',',$_POST['advantagArr']);
 	$oldprovince=trim($_POST["oldprovince"]);
+	$api_url=trim($_POST["api_url"]);
 	if ($province=='请选择省份'){$province=$oldprovince;}
 	$phone1 		= $_POST['phone1'];
 	$phone1_title 	= $_POST['phone1_title'];
@@ -143,7 +144,7 @@ WriteErrMsg($msg);
 	$rightcopy 		= $_POST['rightcopy'];
 	$agreement 		= $_POST['agreement'];
 	$privacy 		= $_POST['privacy'];
-	query("update zzcms_config set phone1='$phone1',phone1_title='$phone1_title',phone2='$phone2',phone2_title='$phone2_title',logo='$logo',version_num='$version_num',rightcopy='$rightcopy',agreement='$agreement',privacy='$privacy',add_time='".time()."' where id='1'");
+	query("update zzcms_config set phone1='$phone1',phone1_title='$phone1_title',phone2='$phone2',phone2_title='$phone2_title',logo='$logo',version_num='$version_num',rightcopy='$rightcopy',agreement='$agreement',privacy='$privacy',api_url='$api_url',add_time='".time()."' where id='1'");
 	
 	echo "<script>location.href='config.php?do=modify'</script>";	
 }
@@ -221,6 +222,12 @@ $rs=query_arr($sql);
       <td align="right" class="border">版权</td>
       <td class="border">     
 			<input name="rightcopy" type="text" id="cp" value="<?php echo $rs[0]['rightcopy']?>" size="45" maxlength="45">      
+	  </td>
+    </tr>
+	<tr> 
+      <td align="right" class="border">api接口地址</td>
+      <td class="border">     
+			<input name="api_url" type="text" id="cp" value="<?php echo $rs[0]['api_url']?>" size="45" maxlength="45"> （后台管理主域名,图片显示使用）   
 	  </td>
     </tr>
     <tr> 

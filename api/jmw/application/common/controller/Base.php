@@ -17,9 +17,21 @@ class Base extends Controller{
 		$this->request = \think\Request::instance();
 		//$this->data = $this->request->param();
 		//$this->setConfig();
+		//设置配置信息
+		$this->getSqlConfiy();
+	}
+	
+	/**
+  	 * 获取系统配置信息设置为全局信息
+	**/
+	protected function getSqlConfiy(){
+		$config = db('config')->where('id',1)->field('logo,api_url')->find();
+		if( !empty($config['api_url']) ){
+			config('PHOTOPATH',$config['api_url']);
+		}
 		
 	}
-
+	
 	/**
   	 * 获取系统配置信息设置为全局信息
 	**/

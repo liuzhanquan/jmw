@@ -279,8 +279,9 @@ class Product extends Home{
 			//查看用户是否关联文章
 			$status = db('usercollect')->where(['did'=>input('id'),'uid'=>$userInfo['id']])->count();
 			$data['collect'] = $status;
-			$data['user'] = db('user')->where('id',$userInfo['id'])->field('username,somane,mobile,sex')->find();
+			$data['user'] = db('user')->where('id',$userInfo['id'])->field('username,somane,mobile,sex,img')->find();
 			$data['user']['phone'] = $data['user']['mobile'];
+			$data['user']['img'] = photo_userpath($data['user']['img']);
 		}
 		
 		//添加足迹

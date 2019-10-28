@@ -68,3 +68,373 @@
 [ sql ] [ SQL ] SELECT `dl_id` FROM `zzcms_ad` WHERE  `smallclassname` = '教育辅导'  AND `bigclassname` = '热门行业' [ RunTime:0.000977s ]
 [ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_dl` [ RunTime:0.006836s ]
 [ sql ] [ SQL ] SELECT `d`.`cp`,`d`.`title`,`d`.`id`,`d`.`photo`,`d`.`hit`,`dl`.`dl_advantag`,`dl`.`price_min`,`dl`.`price_max`,`dl`.`store_num`,`dl`.`join_num`,`dl`.`join_people` FROM `zzcms_dl` `d` INNER JOIN `zzcms_dllist` `dl` ON `dl`.`did`=`d`.`id` WHERE  `d`.`id` IN ('') ORDER BY `d`.`hit` DESC LIMIT 0,5 [ RunTime:0.000977s ]
+---------------------------------------------------------------
+[ 2019-10-26T17:18:22+08:00 ] 127.0.0.1 POST /api/navclass/index
+[ info ] www.jmwapi.com/api/navclass/index [运行时间：0.113281s][吞吐率：8.83req/s] [内存消耗：2,593.20kb] [文件加载：57]
+[ info ] [ LANG ] D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\framework\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'navclass',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.jmwapi.com',
+  'postman-token' => '1ff30173-7c0a-4a0f-bcdf-11c98f56e51e',
+  'cache-control' => 'no-cache',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.18.0',
+  'cookie' => 'userInfo=c25c32XChEYVuWdkOrewZy3ixyWMT2N1/lvEdHZSWQrSrjkRHS95PxEGanoVXbOXIK0ouy/uDC2iFPI',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\api\controller\Navclass->Index[ D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\application\api\controller\Navclass.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013672s ] mysql:host=127.0.0.1;dbname=zzcms;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_config` [ RunTime:0.008789s ]
+[ sql ] [ SQL ] SELECT `logo`,`api_url` FROM `zzcms_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_adclass` [ RunTime:0.008790s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname` FROM `zzcms_adclass` WHERE  `classid` = 14 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_ad` [ RunTime:0.006836s ]
+[ sql ] [ SQL ] SELECT `dl_id` FROM `zzcms_ad` WHERE  `bigclassname` = 'api'  AND `smallclassname` = 'banner' ORDER BY `xuhao` [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_dl` [ RunTime:0.007812s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 34  AND `passed` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 1  AND `passed` = 1 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 31  AND `passed` = 1 LIMIT 1 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 2  AND `passed` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_zsclass` [ RunTime:0.008789s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname`,`img` FROM `zzcms_zsclass` WHERE  `showindex` = 1 ORDER BY `xuhao` ASC LIMIT 9 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname`,`parentid` FROM `zzcms_adclass` WHERE  `classid` = 16 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `dl_id`,`zx_id` FROM `zzcms_ad` WHERE  `smallclassname` = '人气品牌'  AND `bigclassname` = 'api' ORDER BY `xuhao` ASC LIMIT 0,5 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `d`.`id`,`d`.`photo`,`d`.`cp`,`d`.`title`,`z`.`classname`,`dl`.`price_min`,`dl`.`price_max` FROM `zzcms_dl` `d` INNER JOIN `zzcms_zsclass` `z` ON `z`.`classid`=`d`.`classid` INNER JOIN `zzcms_dllist` `dl` ON `dl`.`did`=`d`.`id` WHERE  `d`.`id` = 31  AND `passed` = 1 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SELECT `d`.`id`,`d`.`photo`,`d`.`cp`,`d`.`title`,`z`.`classname`,`dl`.`price_min`,`dl`.`price_max` FROM `zzcms_dl` `d` INNER JOIN `zzcms_zsclass` `z` ON `z`.`classid`=`d`.`classid` INNER JOIN `zzcms_dllist` `dl` ON `dl`.`did`=`d`.`id` WHERE  `d`.`id` = 33  AND `passed` = 1 LIMIT 1 [ RunTime:0.000977s ]
+---------------------------------------------------------------
+[ 2019-10-26T17:18:26+08:00 ] 127.0.0.1 POST /api/navclass/index
+[ info ] www.jmwapi.com/api/navclass/index [运行时间：0.036132s][吞吐率：27.68req/s] [内存消耗：1,523.94kb] [文件加载：45]
+[ info ] [ LANG ] D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\framework\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'navclass',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.jmwapi.com',
+  'postman-token' => '0d154050-9ce4-4dfc-8e11-ee2a28673acf',
+  'cache-control' => 'no-cache',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.18.0',
+  'cookie' => 'userInfo=c25c32XChEYVuWdkOrewZy3ixyWMT2N1/lvEdHZSWQrSrjkRHS95PxEGanoVXbOXIK0ouy/uDC2iFPI',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+[ error ] [64]Can't use function return value in write context[D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\application\common\controller\Base.php:29]
+---------------------------------------------------------------
+[ 2019-10-26T17:20:31+08:00 ] 127.0.0.1 POST /api/navclass/index
+[ info ] www.jmwapi.com/api/navclass/index [运行时间：0.035156s][吞吐率：28.44req/s] [内存消耗：1,523.95kb] [文件加载：45]
+[ info ] [ LANG ] D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\framework\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'navclass',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.jmwapi.com',
+  'postman-token' => 'b397c918-9ff2-4cdf-b04a-4483c3093c7c',
+  'cache-control' => 'no-cache',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.18.0',
+  'cookie' => 'userInfo=c25c32XChEYVuWdkOrewZy3ixyWMT2N1/lvEdHZSWQrSrjkRHS95PxEGanoVXbOXIK0ouy/uDC2iFPI',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+[ error ] [64]Can't use method return value in write context[D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\application\common\controller\Base.php:29]
+---------------------------------------------------------------
+[ 2019-10-26T17:21:08+08:00 ] 127.0.0.1 POST /api/navclass/index
+[ info ] www.jmwapi.com/api/navclass/index [运行时间：0.076172s][吞吐率：13.13req/s] [内存消耗：2,374.73kb] [文件加载：58]
+[ info ] [ LANG ] D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\framework\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'navclass',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.jmwapi.com',
+  'postman-token' => '3545ba79-226c-4bc6-b588-de744cafc118',
+  'cache-control' => 'no-cache',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.18.0',
+  'cookie' => 'userInfo=c25c32XChEYVuWdkOrewZy3ixyWMT2N1/lvEdHZSWQrSrjkRHS95PxEGanoVXbOXIK0ouy/uDC2iFPI',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003906s ] mysql:host=127.0.0.1;dbname=zzcms;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_config` [ RunTime:0.007813s ]
+[ sql ] [ SQL ] SELECT `logo`,`api_url` FROM `zzcms_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000976s ]
+[ error ] [0]致命错误: Class 'app\common\controller\Config' not found[D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\application\common\controller\Base.php:29]
+---------------------------------------------------------------
+[ 2019-10-26T17:21:43+08:00 ] 127.0.0.1 POST /api/navclass/index
+[ info ] www.jmwapi.com/api/navclass/index [运行时间：0.112304s][吞吐率：8.90req/s] [内存消耗：2,597.59kb] [文件加载：57]
+[ info ] [ LANG ] D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\framework\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'navclass',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.jmwapi.com',
+  'postman-token' => 'f652157c-c050-483c-92c9-8fe2ef57278f',
+  'cache-control' => 'no-cache',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.18.0',
+  'cookie' => 'userInfo=c25c32XChEYVuWdkOrewZy3ixyWMT2N1/lvEdHZSWQrSrjkRHS95PxEGanoVXbOXIK0ouy/uDC2iFPI',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\api\controller\Navclass->Index[ D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\application\api\controller\Navclass.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012696s ] mysql:host=127.0.0.1;dbname=zzcms;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_config` [ RunTime:0.008789s ]
+[ sql ] [ SQL ] SELECT `logo`,`api_url` FROM `zzcms_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_adclass` [ RunTime:0.008789s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname` FROM `zzcms_adclass` WHERE  `classid` = 14 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_ad` [ RunTime:0.006836s ]
+[ sql ] [ SQL ] SELECT `dl_id` FROM `zzcms_ad` WHERE  `bigclassname` = 'api'  AND `smallclassname` = 'banner' ORDER BY `xuhao` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_dl` [ RunTime:0.006836s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 34  AND `passed` = 1 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 1  AND `passed` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 31  AND `passed` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 2  AND `passed` = 1 LIMIT 1 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_zsclass` [ RunTime:0.008789s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname`,`img` FROM `zzcms_zsclass` WHERE  `showindex` = 1 ORDER BY `xuhao` ASC LIMIT 9 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname`,`parentid` FROM `zzcms_adclass` WHERE  `classid` = 16 LIMIT 1 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SELECT `dl_id`,`zx_id` FROM `zzcms_ad` WHERE  `smallclassname` = '人气品牌'  AND `bigclassname` = 'api' ORDER BY `xuhao` ASC LIMIT 0,5 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SELECT `d`.`id`,`d`.`photo`,`d`.`cp`,`d`.`title`,`z`.`classname`,`dl`.`price_min`,`dl`.`price_max` FROM `zzcms_dl` `d` INNER JOIN `zzcms_zsclass` `z` ON `z`.`classid`=`d`.`classid` INNER JOIN `zzcms_dllist` `dl` ON `dl`.`did`=`d`.`id` WHERE  `d`.`id` = 31  AND `passed` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `d`.`id`,`d`.`photo`,`d`.`cp`,`d`.`title`,`z`.`classname`,`dl`.`price_min`,`dl`.`price_max` FROM `zzcms_dl` `d` INNER JOIN `zzcms_zsclass` `z` ON `z`.`classid`=`d`.`classid` INNER JOIN `zzcms_dllist` `dl` ON `dl`.`did`=`d`.`id` WHERE  `d`.`id` = 33  AND `passed` = 1 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-10-26T17:22:09+08:00 ] 127.0.0.1 POST /api/navclass/index
+[ info ] www.jmwapi.com/api/navclass/index [运行时间：0.117188s][吞吐率：8.53req/s] [内存消耗：2,597.83kb] [文件加载：57]
+[ info ] [ LANG ] D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\framework\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'navclass',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.jmwapi.com',
+  'postman-token' => '48796801-2a7c-4c28-9474-9ee2dfbaf364',
+  'cache-control' => 'no-cache',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.18.0',
+  'cookie' => 'userInfo=c25c32XChEYVuWdkOrewZy3ixyWMT2N1/lvEdHZSWQrSrjkRHS95PxEGanoVXbOXIK0ouy/uDC2iFPI',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\api\controller\Navclass->Index[ D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\application\api\controller\Navclass.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011719s ] mysql:host=127.0.0.1;dbname=zzcms;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_config` [ RunTime:0.010742s ]
+[ sql ] [ SQL ] SELECT `logo`,`api_url` FROM `zzcms_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_adclass` [ RunTime:0.006836s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname` FROM `zzcms_adclass` WHERE  `classid` = 14 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_ad` [ RunTime:0.007813s ]
+[ sql ] [ SQL ] SELECT `dl_id` FROM `zzcms_ad` WHERE  `bigclassname` = 'api'  AND `smallclassname` = 'banner' ORDER BY `xuhao` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_dl` [ RunTime:0.005860s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 34  AND `passed` = 1 LIMIT 1 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 1  AND `passed` = 1 LIMIT 1 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 31  AND `passed` = 1 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 2  AND `passed` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_zsclass` [ RunTime:0.007812s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname`,`img` FROM `zzcms_zsclass` WHERE  `showindex` = 1 ORDER BY `xuhao` ASC LIMIT 9 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname`,`parentid` FROM `zzcms_adclass` WHERE  `classid` = 16 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `dl_id`,`zx_id` FROM `zzcms_ad` WHERE  `smallclassname` = '人气品牌'  AND `bigclassname` = 'api' ORDER BY `xuhao` ASC LIMIT 0,5 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `d`.`id`,`d`.`photo`,`d`.`cp`,`d`.`title`,`z`.`classname`,`dl`.`price_min`,`dl`.`price_max` FROM `zzcms_dl` `d` INNER JOIN `zzcms_zsclass` `z` ON `z`.`classid`=`d`.`classid` INNER JOIN `zzcms_dllist` `dl` ON `dl`.`did`=`d`.`id` WHERE  `d`.`id` = 31  AND `passed` = 1 LIMIT 1 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SELECT `d`.`id`,`d`.`photo`,`d`.`cp`,`d`.`title`,`z`.`classname`,`dl`.`price_min`,`dl`.`price_max` FROM `zzcms_dl` `d` INNER JOIN `zzcms_zsclass` `z` ON `z`.`classid`=`d`.`classid` INNER JOIN `zzcms_dllist` `dl` ON `dl`.`did`=`d`.`id` WHERE  `d`.`id` = 33  AND `passed` = 1 LIMIT 1 [ RunTime:0.001953s ]
+---------------------------------------------------------------
+[ 2019-10-26T17:22:24+08:00 ] 127.0.0.1 POST /api/navclass/index
+[ info ] www.jmwapi.com/api/navclass/index [运行时间：0.108398s][吞吐率：9.23req/s] [内存消耗：2,597.59kb] [文件加载：57]
+[ info ] [ LANG ] D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\framework\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'navclass',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.jmwapi.com',
+  'postman-token' => '7ca6c0e2-7d74-4186-a3c1-debfed52c292',
+  'cache-control' => 'no-cache',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.18.0',
+  'cookie' => 'userInfo=c25c32XChEYVuWdkOrewZy3ixyWMT2N1/lvEdHZSWQrSrjkRHS95PxEGanoVXbOXIK0ouy/uDC2iFPI',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\api\controller\Navclass->Index[ D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\application\api\controller\Navclass.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002930s ] mysql:host=127.0.0.1;dbname=zzcms;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_config` [ RunTime:0.008789s ]
+[ sql ] [ SQL ] SELECT `logo`,`api_url` FROM `zzcms_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_adclass` [ RunTime:0.006836s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname` FROM `zzcms_adclass` WHERE  `classid` = 14 LIMIT 1 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_ad` [ RunTime:0.007812s ]
+[ sql ] [ SQL ] SELECT `dl_id` FROM `zzcms_ad` WHERE  `bigclassname` = 'api'  AND `smallclassname` = 'banner' ORDER BY `xuhao` [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_dl` [ RunTime:0.012696s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 34  AND `passed` = 1 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 1  AND `passed` = 1 LIMIT 1 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 31  AND `passed` = 1 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 2  AND `passed` = 1 LIMIT 1 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_zsclass` [ RunTime:0.010743s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname`,`img` FROM `zzcms_zsclass` WHERE  `showindex` = 1 ORDER BY `xuhao` ASC LIMIT 9 [ RunTime:0.001953s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname`,`parentid` FROM `zzcms_adclass` WHERE  `classid` = 16 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SELECT `dl_id`,`zx_id` FROM `zzcms_ad` WHERE  `smallclassname` = '人气品牌'  AND `bigclassname` = 'api' ORDER BY `xuhao` ASC LIMIT 0,5 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SELECT `d`.`id`,`d`.`photo`,`d`.`cp`,`d`.`title`,`z`.`classname`,`dl`.`price_min`,`dl`.`price_max` FROM `zzcms_dl` `d` INNER JOIN `zzcms_zsclass` `z` ON `z`.`classid`=`d`.`classid` INNER JOIN `zzcms_dllist` `dl` ON `dl`.`did`=`d`.`id` WHERE  `d`.`id` = 31  AND `passed` = 1 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SELECT `d`.`id`,`d`.`photo`,`d`.`cp`,`d`.`title`,`z`.`classname`,`dl`.`price_min`,`dl`.`price_max` FROM `zzcms_dl` `d` INNER JOIN `zzcms_zsclass` `z` ON `z`.`classid`=`d`.`classid` INNER JOIN `zzcms_dllist` `dl` ON `dl`.`did`=`d`.`id` WHERE  `d`.`id` = 33  AND `passed` = 1 LIMIT 1 [ RunTime:0.000977s ]
+---------------------------------------------------------------
+[ 2019-10-26T17:22:44+08:00 ] 127.0.0.1 POST /api/navclass/index
+[ info ] www.jmwapi.com/api/navclass/index [运行时间：0.116211s][吞吐率：8.61req/s] [内存消耗：2,597.59kb] [文件加载：57]
+[ info ] [ LANG ] D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\framework\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'navclass',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.jmwapi.com',
+  'postman-token' => '645d7710-b887-4499-9fa2-526c4c239623',
+  'cache-control' => 'no-cache',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.18.0',
+  'cookie' => 'userInfo=c25c32XChEYVuWdkOrewZy3ixyWMT2N1/lvEdHZSWQrSrjkRHS95PxEGanoVXbOXIK0ouy/uDC2iFPI',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\api\controller\Navclass->Index[ D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\application\api\controller\Navclass.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002930s ] mysql:host=127.0.0.1;dbname=zzcms;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_config` [ RunTime:0.008789s ]
+[ sql ] [ SQL ] SELECT `logo`,`api_url` FROM `zzcms_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_adclass` [ RunTime:0.007813s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname` FROM `zzcms_adclass` WHERE  `classid` = 14 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_ad` [ RunTime:0.008789s ]
+[ sql ] [ SQL ] SELECT `dl_id` FROM `zzcms_ad` WHERE  `bigclassname` = 'api'  AND `smallclassname` = 'banner' ORDER BY `xuhao` [ RunTime:0.001953s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_dl` [ RunTime:0.009766s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 34  AND `passed` = 1 LIMIT 1 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 1  AND `passed` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 31  AND `passed` = 1 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 2  AND `passed` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_zsclass` [ RunTime:0.009766s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname`,`img` FROM `zzcms_zsclass` WHERE  `showindex` = 1 ORDER BY `xuhao` ASC LIMIT 9 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname`,`parentid` FROM `zzcms_adclass` WHERE  `classid` = 16 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SELECT `dl_id`,`zx_id` FROM `zzcms_ad` WHERE  `smallclassname` = '人气品牌'  AND `bigclassname` = 'api' ORDER BY `xuhao` ASC LIMIT 0,5 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SELECT `d`.`id`,`d`.`photo`,`d`.`cp`,`d`.`title`,`z`.`classname`,`dl`.`price_min`,`dl`.`price_max` FROM `zzcms_dl` `d` INNER JOIN `zzcms_zsclass` `z` ON `z`.`classid`=`d`.`classid` INNER JOIN `zzcms_dllist` `dl` ON `dl`.`did`=`d`.`id` WHERE  `d`.`id` = 31  AND `passed` = 1 LIMIT 1 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SELECT `d`.`id`,`d`.`photo`,`d`.`cp`,`d`.`title`,`z`.`classname`,`dl`.`price_min`,`dl`.`price_max` FROM `zzcms_dl` `d` INNER JOIN `zzcms_zsclass` `z` ON `z`.`classid`=`d`.`classid` INNER JOIN `zzcms_dllist` `dl` ON `dl`.`did`=`d`.`id` WHERE  `d`.`id` = 33  AND `passed` = 1 LIMIT 1 [ RunTime:0.000977s ]
+---------------------------------------------------------------
+[ 2019-10-26T17:23:51+08:00 ] 127.0.0.1 POST /api/navclass/index
+[ info ] www.jmwapi.com/api/navclass/index [运行时间：0.098633s][吞吐率：10.14req/s] [内存消耗：2,597.59kb] [文件加载：57]
+[ info ] [ LANG ] D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\framework\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'navclass',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.jmwapi.com',
+  'postman-token' => 'b7d8542a-7774-486a-a95f-5b09709cf957',
+  'cache-control' => 'no-cache',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.18.0',
+  'cookie' => 'userInfo=c25c32XChEYVuWdkOrewZy3ixyWMT2N1/lvEdHZSWQrSrjkRHS95PxEGanoVXbOXIK0ouy/uDC2iFPI',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\api\controller\Navclass->Index[ D:\phpstudy\WWW\zzcms2019\zzcms2019\api\jmw\application\api\controller\Navclass.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001954s ] mysql:host=127.0.0.1;dbname=zzcms;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_config` [ RunTime:0.006836s ]
+[ sql ] [ SQL ] SELECT `logo`,`api_url` FROM `zzcms_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_adclass` [ RunTime:0.007813s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname` FROM `zzcms_adclass` WHERE  `classid` = 14 LIMIT 1 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_ad` [ RunTime:0.011718s ]
+[ sql ] [ SQL ] SELECT `dl_id` FROM `zzcms_ad` WHERE  `bigclassname` = 'api'  AND `smallclassname` = 'banner' ORDER BY `xuhao` [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_dl` [ RunTime:0.007812s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 34  AND `passed` = 1 LIMIT 1 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 1  AND `passed` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 31  AND `passed` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`photo` FROM `zzcms_dl` WHERE  `id` = 2  AND `passed` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zzcms_zsclass` [ RunTime:0.007813s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname`,`img` FROM `zzcms_zsclass` WHERE  `showindex` = 1 ORDER BY `xuhao` ASC LIMIT 9 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `classid`,`classname`,`parentid` FROM `zzcms_adclass` WHERE  `classid` = 16 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `dl_id`,`zx_id` FROM `zzcms_ad` WHERE  `smallclassname` = '人气品牌'  AND `bigclassname` = 'api' ORDER BY `xuhao` ASC LIMIT 0,5 [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SELECT `d`.`id`,`d`.`photo`,`d`.`cp`,`d`.`title`,`z`.`classname`,`dl`.`price_min`,`dl`.`price_max` FROM `zzcms_dl` `d` INNER JOIN `zzcms_zsclass` `z` ON `z`.`classid`=`d`.`classid` INNER JOIN `zzcms_dllist` `dl` ON `dl`.`did`=`d`.`id` WHERE  `d`.`id` = 31  AND `passed` = 1 LIMIT 1 [ RunTime:0.000976s ]
+[ sql ] [ SQL ] SELECT `d`.`id`,`d`.`photo`,`d`.`cp`,`d`.`title`,`z`.`classname`,`dl`.`price_min`,`dl`.`price_max` FROM `zzcms_dl` `d` INNER JOIN `zzcms_zsclass` `z` ON `z`.`classid`=`d`.`classid` INNER JOIN `zzcms_dllist` `dl` ON `dl`.`did`=`d`.`id` WHERE  `d`.`id` = 33  AND `passed` = 1 LIMIT 1 [ RunTime:0.000977s ]

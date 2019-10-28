@@ -95,7 +95,7 @@ class Ad extends Base{
 			}
 		
 		$zx = $this->selectzx1($page,1);
-		if( !empty($zx) && !empty($res) ){
+		if( !empty($zx) && !empty($res) && count($res) >= $limit  ){
 			$res[] = $zx;
 		}
 		
